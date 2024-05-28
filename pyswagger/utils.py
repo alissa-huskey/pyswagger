@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from .compat import MutableMapping
 from .consts import private
 from .errs import CycleDetectionError
 import six
@@ -9,7 +10,6 @@ import re
 import os
 import operator
 import functools
-import collections
 
 #TODO: accept varg
 def scope_compose(scope, name, sep=private.SCOPE_SEPARATOR):
@@ -596,7 +596,7 @@ def patch_path(base_path, path):
     return path
 
 
-class CaseInsensitiveDict(collections.MutableMapping):
+class CaseInsensitiveDict(MutableMapping):
     """ a case insensitive dict:
         - allow to query with case insensitive keys (get, in)
         - iteration would return original key

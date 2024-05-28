@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from .compat import MutableMapping
 from .primitives.comm import PrimJSONEncoder
 from .utils import final, deref, CaseInsensitiveDict
 from pyswagger import errs
@@ -388,7 +389,7 @@ class Response(object):
              final(self.__op.responses.get('default', None)))
 
         if header != None:
-            if isinstance(header, (collections.Mapping, collections.MutableMapping)):
+            if isinstance(header, (collections.Mapping, MutableMapping)):
                 for k, v in six.iteritems(header):
                     self._convert_header(r, k, v)
             else:
